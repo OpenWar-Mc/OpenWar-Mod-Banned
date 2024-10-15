@@ -1,5 +1,7 @@
 package com.openwar.charpy.Handler;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.init.Items;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -10,7 +12,6 @@ import java.util.List;
 
 public class TooltipHandler {
     List<ItemStack> items;
-
 public TooltipHandler (List<ItemStack> items) {
     this.items = items;
 }

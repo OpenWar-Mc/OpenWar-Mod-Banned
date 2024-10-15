@@ -36,7 +36,8 @@ public class Main {
     public void postInit(FMLPostInitializationEvent event) {
         ItemLoader il = new ItemLoader();
         List<ItemStack> items = il.readItemsFromCSV();
+        List<String> admin = il.readAdminsFromCSV();
         MinecraftForge.EVENT_BUS.register(new TooltipHandler(items));
-        MinecraftForge.EVENT_BUS.register(new EventBanned(items));
+        MinecraftForge.EVENT_BUS.register(new EventBanned(items, admin));
     }
 }

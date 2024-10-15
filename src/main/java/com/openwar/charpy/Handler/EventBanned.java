@@ -13,18 +13,23 @@ import java.util.List;
 
 public class EventBanned {
     List<ItemStack> items;
+    List<String> admin;
 
-    public EventBanned(List<ItemStack> items) {
+    public EventBanned(List<ItemStack> items, List<String> admin) {
         this.items = items;
+        this.admin = admin;
     }
 
     @SubscribeEvent
     public void onClickOn(PlayerInteractEvent.RightClickItem event) {
         ItemStack itemStack = event.getItemStack();
-        for (ItemStack bannedItem : items) {
-            if (ItemStack.areItemStacksEqual(itemStack, bannedItem)) {
-                InventoryPlayer inv = event.getEntityPlayer().inventory;
-                inv.deleteStack(event.getItemStack());
+        EntityPlayer player = event.getEntityPlayer();
+        if(!admin.contains(player.getDisplayNameString())) {
+            for (ItemStack bannedItem : items) {
+                if (ItemStack.areItemStacksEqual(itemStack, bannedItem)) {
+                    InventoryPlayer inv = event.getEntityPlayer().inventory;
+                    inv.deleteStack(event.getItemStack());
+                }
             }
         }
     }
@@ -32,27 +37,10 @@ public class EventBanned {
     @SubscribeEvent
     public void onOpenContainer(PlayerContainerEvent.Open event) {
         InventoryPlayer inv = event.getEntityPlayer().inventory;
-        for (int i = 0; i < inv.getSizeInventory(); i++) {
-            ItemStack currentStack = inv.getStackInSlot(i);
-            if (currentStack != ItemStack.EMPTY) {
-                for (ItemStack bannedItem : items) {
-                    if (ItemStack.areItemsEqual(currentStack, bannedItem)) {
-                        inv.deleteStack(currentStack);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    @SubscribeEvent
-    public void onClickInventory(GuiScreenEvent.MouseInputEvent event) {
-        if (Minecraft.getMinecraft().currentScreen instanceof GuiContainer) {
-            EntityPlayer player = Minecraft.getMinecraft().player;
-            InventoryPlayer inv = player.inventory;
-
+        EntityPlayer player = event.getEntityPlayer();
+        if(!admin.contains(player.getDisplayNameString())) {
             for (int i = 0; i < inv.getSizeInventory(); i++) {
                 ItemStack currentStack = inv.getStackInSlot(i);
-
                 if (currentStack != ItemStack.EMPTY) {
                     for (ItemStack bannedItem : items) {
                         if (ItemStack.areItemsEqual(currentStack, bannedItem)) {
@@ -62,6 +50,27 @@ public class EventBanned {
                     }
                 }
             }
+            }
+    }
+    @SubscribeEvent
+    public void onClickInventory(GuiScreenEvent.MouseInputEvent event) {
+        if (Minecraft.getMinecraft().currentScreen instanceof GuiContainer) {
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            InventoryPlayer inv = player.inventory;
+                if(!admin.contains(player.getDisplayNameString())) {
+                    for (int i = 0; i < inv.getSizeInventory(); i++) {
+                        ItemStack currentStack = inv.getStackInSlot(i);
+
+                        if (currentStack != ItemStack.EMPTY) {
+                            for (ItemStack bannedItem : items) {
+                                if (ItemStack.areItemsEqual(currentStack, bannedItem)) {
+                                    inv.deleteStack(currentStack);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
         }
     }
 }
