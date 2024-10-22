@@ -3,6 +3,7 @@ package com.openwar.charpy.Proxies;
 import com.openwar.charpy.Entity.EntityParachute;
 import com.openwar.charpy.Entity.EntityPlane;
 import com.openwar.charpy.Handler.EventBanned;
+import com.openwar.charpy.Handler.PlayerEventHandler;
 import com.openwar.charpy.Main;
 import com.openwar.charpy.Utils.ItemLoader;
 import com.openwar.charpy.openwarbanned.Tags;

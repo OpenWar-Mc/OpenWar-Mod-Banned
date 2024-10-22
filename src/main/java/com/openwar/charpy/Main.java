@@ -3,11 +3,11 @@ package com.openwar.charpy;
 import com.openwar.charpy.Entity.EntityParachute;
 import com.openwar.charpy.Entity.EntityPlane;
 import com.openwar.charpy.Handler.CommandSpawnParachute;
-import com.openwar.charpy.Handler.EventBanned;
-import com.openwar.charpy.Handler.TooltipHandler;
+import com.openwar.charpy.Handler.NetworkHandler;
+import com.openwar.charpy.Handler.PlayerEventHandler;
 import com.openwar.charpy.Network.PacketDeleteItem;
+import com.openwar.charpy.Network.PacketWorldName;
 import com.openwar.charpy.Proxies.CommonProxy;
-import com.openwar.charpy.Utils.ItemLoader;
 import com.openwar.charpy.openwarbanned.Tags;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -41,12 +41,8 @@ public class Main {
      */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        System.out.println("Event Handler");
-        System.out.println("Event Renders");
         commonProxy.registerRenders();
-        System.out.println("Event Entity");
         commonProxy.registerEntity();
-        System.out.println("Event ModEntity");
         EntityRegistry.registerModEntity(new ResourceLocation("openwarbanned", "plane"), EntityPlane.class, "Plane", 2, Tags.MOD_ID, 500, 1, true);
         EntityRegistry.registerModEntity(new ResourceLocation("openwarbanned", "parachute"), EntityParachute.class, "Parachute", 1, this, 300, 1, true);
     }
@@ -57,9 +53,9 @@ public class Main {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         LOGGER.info("OpenWar Banned loading {}!", Tags.MOD_NAME);
+        MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
         commonProxy.registerEventHandlers();
-        network = NetworkRegistry.INSTANCE.newSimpleChannel("openwar");
-        network.registerMessage(PacketDeleteItem.Handler.class, PacketDeleteItem.class, 0, Side.SERVER);
+        NetworkHandler.init();
     }
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
