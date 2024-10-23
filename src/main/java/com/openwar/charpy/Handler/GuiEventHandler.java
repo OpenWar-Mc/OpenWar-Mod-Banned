@@ -8,6 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,10 +38,47 @@ public class GuiEventHandler {
                     if (!currentStack.isEmpty()) {
                         for (ItemStack bannedItem : items) {
                             if (ItemStack.areItemsEqual(currentStack, bannedItem)) {
-                                Main.network.sendToServer(new PacketDeleteItem(i));
-                                System.out.println("Sent delete request to server");
+                                inv.setInventorySlotContents(i, ItemStack.EMPTY);
                                 break;
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        EntityPlayer player = event.getEntityPlayer();
+        InventoryPlayer inv = player.inventory;
+        if (!admin.contains(player.getDisplayNameString())) {
+            for (int i = 0; i < inv.getSizeInventory(); i++) {
+                ItemStack heldItem = player.getHeldItem(event.getHand());
+                if (!heldItem.isEmpty()) {
+                    for (ItemStack bannedItem : items) {
+                        if (ItemStack.areItemsEqual(heldItem, bannedItem)) {
+                            inv.setInventorySlotContents(i, ItemStack.EMPTY);
+                            event.setCanceled(true);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @SubscribeEvent
+    public void onItemPickup(EntityItemPickupEvent event) {
+        EntityPlayer player = event.getEntityPlayer();
+        InventoryPlayer inv = player.inventory;
+        if (!admin.contains(player.getDisplayNameString())) {
+            for (int i = 0; i < inv.getSizeInventory(); i++) {
+                ItemStack currentStack = inv.getStackInSlot(i);
+                if (!currentStack.isEmpty()) {
+                    for (ItemStack bannedItem : items) {
+                        if (ItemStack.areItemsEqual(currentStack, bannedItem)) {
+                            inv.setInventorySlotContents(i, ItemStack.EMPTY);
+                            break;
                         }
                     }
                 }

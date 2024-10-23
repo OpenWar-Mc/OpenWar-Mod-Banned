@@ -46,7 +46,6 @@ public class EventBanned {
                     for (ItemStack bannedItem : items) {
                         if (ItemStack.areItemsEqual(currentStack, bannedItem)) {
                             inv.deleteStack(currentStack);
-                            System.out.println(" Delete ITEM");
                             break;
                         }
                     }

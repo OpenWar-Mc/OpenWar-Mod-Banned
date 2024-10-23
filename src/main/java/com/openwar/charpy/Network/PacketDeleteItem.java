@@ -35,7 +35,6 @@ public class PacketDeleteItem implements IMessage {
                 ItemStack stack = player.inventory.getStackInSlot(message.slotIndex);
                 if (!stack.isEmpty()) {
                     player.inventory.deleteStack(stack);
-                    System.out.println("Item deleted on server");
                 }
             });
             return null;
