@@ -24,6 +24,52 @@ public class FogHandler {
 
     public static void setCurrentWorldName(String worldName) {
         System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
+        System.out.println("World FOG " +worldName);
         currentWorldName = worldName;
     }
 }

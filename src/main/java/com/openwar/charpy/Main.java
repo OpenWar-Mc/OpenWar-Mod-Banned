@@ -5,9 +5,7 @@ import com.openwar.charpy.Entity.EntityParachute;
 import com.openwar.charpy.Entity.EntityPlane;
 import com.openwar.charpy.Handler.CommandSpawnParachute;
 import com.openwar.charpy.Handler.NetworkHandler;
-import com.openwar.charpy.Handler.PlayerEventHandler;
-import com.openwar.charpy.Network.PacketDeleteItem;
-import com.openwar.charpy.Network.PacketWorldName;
+import com.openwar.charpy.Hud.HudWarzone;
 import com.openwar.charpy.Proxies.CommonProxy;
 import com.openwar.charpy.openwarbanned.Tags;
 import net.minecraft.item.ItemStack;
@@ -16,10 +14,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,7 +50,7 @@ public class Main {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         LOGGER.info("OpenWar Banned loading {}!", Tags.MOD_NAME);
-        MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
+        MinecraftForge.EVENT_BUS.register(new HudWarzone());
         commonProxy.registerEventHandlers();
         NetworkHandler.init();
     }

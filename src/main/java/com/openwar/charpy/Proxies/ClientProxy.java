@@ -2,6 +2,7 @@ package com.openwar.charpy.Proxies;
 
 import com.openwar.charpy.Entity.*;
 import com.openwar.charpy.Handler.*;
+import com.openwar.charpy.Hud.HudWarzone;
 import com.openwar.charpy.Utils.ItemLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
