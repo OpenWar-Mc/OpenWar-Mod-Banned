@@ -1,7 +1,9 @@
 package com.openwar.charpy.Network;
 
 import com.openwar.charpy.Handler.FogHandler;
+import com.openwar.charpy.Handler.PlayerInfo;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -29,7 +31,12 @@ public class PacketWorldName implements IMessage {
     public static class Handler implements IMessageHandler<PacketWorldName, IMessage> {
         @Override
         public IMessage onMessage(PacketWorldName message, MessageContext ctx) {
-            FogHandler.setCurrentWorldName(message.worldName);
+            Minecraft.getMinecraft().addScheduledTask(() -> {
+                System.out.println("PACKET "+message.worldName);
+
+                FogHandler.setCurrentWorldName(message.worldName);
+                PlayerInfo.isInWarzone = "warzone".equals(message.worldName);
+            });
             return null;
         }
     }

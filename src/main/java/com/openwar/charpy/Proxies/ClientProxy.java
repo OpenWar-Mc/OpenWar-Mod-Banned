@@ -1,9 +1,7 @@
 package com.openwar.charpy.Proxies;
 
 import com.openwar.charpy.Entity.*;
-import com.openwar.charpy.Handler.FogHandler;
-import com.openwar.charpy.Handler.GuiEventHandler;
-import com.openwar.charpy.Handler.TooltipHandler;
+import com.openwar.charpy.Handler.*;
 import com.openwar.charpy.Utils.ItemLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,6 +17,7 @@ import java.util.List;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenders() {
+        MinecraftForge.EVENT_BUS.register(new PlayerInfo());
         RenderingRegistry.registerEntityRenderingHandler(EntityPlane.class, RenderPlane.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityParachute.class, manager -> new RenderParachute(manager, new Parachuuute()));
     }

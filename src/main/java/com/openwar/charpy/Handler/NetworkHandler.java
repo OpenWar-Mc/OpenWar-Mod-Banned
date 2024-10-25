@@ -1,6 +1,7 @@
 package com.openwar.charpy.Handler;
 
 import com.openwar.charpy.Network.PacketDeleteItem;
+import com.openwar.charpy.Network.PacketMessageInfo;
 import com.openwar.charpy.Network.PacketWorldName;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -12,5 +13,6 @@ public class NetworkHandler {
     public static void init() {
         INSTANCE.registerMessage(PacketDeleteItem.Handler.class, PacketDeleteItem.class, 0, Side.SERVER);
         INSTANCE.registerMessage(PacketWorldName.Handler.class, PacketWorldName.class, 1, Side.CLIENT);
+        INSTANCE.registerMessage(PacketMessageInfo.Handler.class, PacketMessageInfo.class, 2, Side.CLIENT);
     }
 }

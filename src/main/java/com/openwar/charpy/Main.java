@@ -1,5 +1,6 @@
 package com.openwar.charpy;
 
+import com.openwar.charpy.Commands.CommandInfo;
 import com.openwar.charpy.Entity.EntityParachute;
 import com.openwar.charpy.Entity.EntityPlane;
 import com.openwar.charpy.Handler.CommandSpawnParachute;
@@ -60,5 +61,6 @@ public class Main {
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandSpawnParachute());
+        event.registerServerCommand(new CommandInfo());
     }
 }
