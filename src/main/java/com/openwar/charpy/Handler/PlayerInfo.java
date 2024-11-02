@@ -10,6 +10,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
@@ -25,6 +26,8 @@ public class PlayerInfo {
     public static String playerLevel;
     public static boolean isInWarzone = false;
     private boolean showGui = true;
+    private boolean otherKeyPressedWithF3 = false;
+    private boolean wasF3Pressed = false;
 
     List<String> targetable = Arrays.asList(
             "Block{mwc:fridge_closed}",
@@ -52,13 +55,33 @@ public class PlayerInfo {
             "Block{hbm:radiorec}",
             "Block{hbm:safe}"
     );
+
+
+
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
         World world = mc.player.getEntityWorld();
+
         if (world.isRemote) {
+            if (Keyboard.isKeyDown(Keyboard.KEY_APOSTROPHE)) {
+               showGui = !showGui;
+            }
             if (Keyboard.isKeyDown(Keyboard.KEY_F3)) {
-                showGui = !showGui;
+                for (int keyCode = Keyboard.KEY_1; keyCode <= Keyboard.KEY_Z; keyCode++) {
+                    if (Keyboard.isKeyDown(keyCode) && keyCode != Keyboard.KEY_F3) {
+                        otherKeyPressedWithF3 = true;
+                        break;
+                    }
+                }
+                wasF3Pressed = true;
+            }
+            else if (wasF3Pressed) {
+                wasF3Pressed = false;
+                if (!otherKeyPressedWithF3) {
+                    showGui = !showGui;
+                }
+                otherKeyPressedWithF3 = false;
             }
         }
     }
