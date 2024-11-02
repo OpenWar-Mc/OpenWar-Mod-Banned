@@ -1,0 +1,1 @@
+FMLCorePlugin: com.openwar.charpy.Mixin.MixinLoader
