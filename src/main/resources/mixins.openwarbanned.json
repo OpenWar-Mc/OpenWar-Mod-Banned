@@ -1,5 +1,5 @@
 {
-	"package": "",
+	"package": "com.openwar.charpy.Mixin",
 	"required": true,
 	"refmap": "mixins.${mod_id}.refmap.json",
 	"target": "@env(DEFAULT)",
@@ -7,5 +7,7 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [],
 	"server": [],
-	"client": []
+	"client": [
+		"MixinRenderManager"
+	]
 }
