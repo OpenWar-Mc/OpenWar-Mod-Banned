@@ -35,7 +35,7 @@ public class PacketWorldName implements IMessage {
                 System.out.println("PACKET "+message.worldName);
 
                 FogHandler.setCurrentWorldName(message.worldName);
-                PlayerInfo.isInWarzone = "warzone".equals(message.worldName);
+                PlayerInfo.world = message.worldName;
             });
             return null;
         }
