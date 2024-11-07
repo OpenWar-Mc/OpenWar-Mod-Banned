@@ -57,30 +57,8 @@ public class PlayerInfo {
     );
 
     List<String> targetableWasteLand = Arrays.asList(
-            "Block{mwc:fridge_closed}",
-            "Block{mwc:fridge_open}",
-            "Block{mwc:filingcabinet_opened}",
-            "Block{mwc:filingcabinet}",
-            "Block{mwc:dumpster}",
-            "Block{mwc:wooden_crate_opened}",
-            "Block{cfm:counter_drawer}",
-            "Block{cfm:bedside_cabinet_oak}",
-            "Block{cfm:desk_cabinet_oak}",
-            "Block{mwc:russian_weapons_case}",
-            "Block{mwc:weapons_case}",
-            "Block{mwc:ammo_box}",
-            "Block{mwc:weapons_case_small}",
-            "Block{mwc:weapons_locker}",
-            "Block{mwc:medical_crate}",
-            "Block{mwc:trash_bin}",
-            "Block{mwc:vending_machine}",
-            "Block{mwc:supply_drop}",
-            "Block{mwc:scp_locker}",
-            "Block{mwc:locker}",
-            "Block{mwc:electric_box_opened}",
-            "Block{mwc:electric_box}",
-            "Block{hbm:radiorec}",
-            "Block{hbm:safe}"
+            "Block{hbm:crate_can}",
+            "Block{hbm:block_meteor_treasure}"
     );
 
     @SubscribeEvent
