@@ -24,12 +24,12 @@ public class PlayerInfo {
     private final Minecraft mc = Minecraft.getMinecraft();
     public static String playerBalance;
     public static String playerLevel;
-    public static boolean isInWarzone = false;
+    public static String world;
     private boolean showGui = true;
     private boolean otherKeyPressedWithF3 = false;
     private boolean wasF3Pressed = false;
 
-    List<String> targetable = Arrays.asList(
+    List<String> targetableWarzone = Arrays.asList(
             "Block{mwc:fridge_closed}",
             "Block{mwc:fridge_open}",
             "Block{mwc:filingcabinet_opened}",
@@ -56,7 +56,32 @@ public class PlayerInfo {
             "Block{hbm:safe}"
     );
 
-
+    List<String> targetableWasteLand = Arrays.asList(
+            "Block{mwc:fridge_closed}",
+            "Block{mwc:fridge_open}",
+            "Block{mwc:filingcabinet_opened}",
+            "Block{mwc:filingcabinet}",
+            "Block{mwc:dumpster}",
+            "Block{mwc:wooden_crate_opened}",
+            "Block{cfm:counter_drawer}",
+            "Block{cfm:bedside_cabinet_oak}",
+            "Block{cfm:desk_cabinet_oak}",
+            "Block{mwc:russian_weapons_case}",
+            "Block{mwc:weapons_case}",
+            "Block{mwc:ammo_box}",
+            "Block{mwc:weapons_case_small}",
+            "Block{mwc:weapons_locker}",
+            "Block{mwc:medical_crate}",
+            "Block{mwc:trash_bin}",
+            "Block{mwc:vending_machine}",
+            "Block{mwc:supply_drop}",
+            "Block{mwc:scp_locker}",
+            "Block{mwc:locker}",
+            "Block{mwc:electric_box_opened}",
+            "Block{mwc:electric_box}",
+            "Block{hbm:radiorec}",
+            "Block{hbm:safe}"
+    );
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
@@ -105,7 +130,16 @@ public class PlayerInfo {
                 gui.drawLogoOpenWar();
                 Block target = raytracePlayer(mc.player);
                 if (target != null) {
-                    if (targetable.contains(target.toString()) && isInWarzone) {
+                    if (targetableWarzone.contains(target.toString()) && world.equals("warzone")) {
+                        ScaledResolution scaledResolution = new ScaledResolution(mc);
+                        int screenWidth = scaledResolution.getScaledWidth();
+                        int screenHeight = scaledResolution.getScaledHeight();
+                        gui.drawRect60(screenWidth / 2 + 8, screenHeight / 2 + 8, 85, 15);
+                        gui.drawCursor();
+                        Minecraft.getMinecraft().ingameGUI.drawTexturedModalRect(screenWidth / 2 + 5, screenHeight / 2 + 5, 0, 0, 16, 16);
+                        gui.drawString(screenWidth / 2 + 10, screenHeight / 2 + 12, "    \u00A78» \u00A7cClick Here", 0x7700FF);
+                    }
+                    if (targetableWasteLand.contains(target.toString()) && world.equals("fire")) {
                         ScaledResolution scaledResolution = new ScaledResolution(mc);
                         int screenWidth = scaledResolution.getScaledWidth();
                         int screenHeight = scaledResolution.getScaledHeight();
