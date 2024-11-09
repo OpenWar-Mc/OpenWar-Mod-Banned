@@ -1,0 +1,14 @@
+{
+    "variants": {
+        "age=7": [
+            { "model": "wheat_stage7/0", "weight": 20 },
+            { "model": "wheat_stage7/1", "weight": 20 },
+            { "model": "wheat_stage7/2", "weight": 20 },
+            { "model": "wheat_stage7/3", "weight": 20 },
+            { "model": "wheat_stage7/4", "weight": 20 },
+            { "model": "wheat_stage7/5", "weight": 20 },
+            { "model": "wheat_stage7/6", "weight": 4 },
+            { "model": "wheat_stage7/7", "weight": 4 }
+        ]
+    }
+}

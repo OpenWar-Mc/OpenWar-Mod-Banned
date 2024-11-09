@@ -2,64 +2,22 @@ package com.openwar.charpy.Mixin;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.mixin.Mixins;
-import org.spongepowered.asm.mixin.connect.IMixinConnector;
+import zone.rong.mixinbooter.IEarlyMixinLoader;
 
-public class MixinLoader implements IFMLLoadingPlugin, IMixinConnector {
+import java.util.Collections;
+import java.util.List;
+
+public class MixinLoader implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     static {
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-        System.out.println("MixinLoader static block: Initializing");
-    }
 
-    public MixinLoader() {
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
-        System.out.println("MixinLoader constructor: Loading Mixins");
         Mixins.addConfiguration("mixins.openwarbanned.json");
     }
 
-    @Override
-    public void connect() {
+    public MixinLoader() {
+
     }
+
 
     @Override
     public String[] getASMTransformerClass() {
@@ -82,5 +40,10 @@ public class MixinLoader implements IFMLLoadingPlugin, IMixinConnector {
     @Override
     public String getAccessTransformerClass() {
         return null;
+    }
+
+    @Override
+    public List<String> getMixinConfigs() {
+        return Collections.emptyList();
     }
 }
