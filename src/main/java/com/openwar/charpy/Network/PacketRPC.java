@@ -6,6 +6,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class PacketRPC implements IMessage {
     private String details;
     private String state;
@@ -45,11 +49,36 @@ public class PacketRPC implements IMessage {
     public String getState() { return state; }
 
     public static class Handler implements IMessageHandler<PacketRPC, IMessage> {
+        private long lastPacketTimestamp = 0;
+        private static final long TIMEOUT = 3000;
+        private long timeoutExpiration = 0;
+
+        private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+        public Handler() {
+            scheduler.scheduleAtFixedRate(this::checkTimeout, 1, 1, TimeUnit.SECONDS);
+        }
+
+        private void checkTimeout() {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime > timeoutExpiration) {
+                updatePresence("Main Menu", "");
+            }
+        }
+
         @Override
         public IMessage onMessage(PacketRPC message, MessageContext ctx) {
-            RichPresence rpc = new RichPresence("947431491284115456");
-            rpc.updatePresence(message.getDetails(), message.getState(), "original_openwar", "Join Us !", "", "");
+            long currentTime = System.currentTimeMillis();
+            timeoutExpiration = currentTime + TIMEOUT;
+            updatePresence(message.getDetails(), message.getState());
+            lastPacketTimestamp = currentTime;
+
             return null;
+        }
+
+        private void updatePresence(String details, String state) {
+            RichPresence rpc = new RichPresence("947431491284115456");
+            rpc.updatePresence(details, state, "original_openwar", "Join Us !", "", "");
         }
     }
 }

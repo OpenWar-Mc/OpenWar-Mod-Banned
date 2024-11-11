@@ -14,13 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 public class JoinQuitHandler {
 
-    private static RichPresence rpc;
     private static boolean isConnected;
     private static ScheduledExecutorService scheduler;
 
-    public static void setRPC(RichPresence presence) {
-        rpc = presence;
-    }
 
     @SubscribeEvent
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
@@ -35,8 +31,7 @@ public class JoinQuitHandler {
     @SubscribeEvent
     public static void onPlayerDisconnect(PlayerEvent.PlayerLoggedOutEvent event) {
         isConnected = false;
-        EntityPlayerMP player = (EntityPlayerMP) event.player;
-        stopUpdateTask(player);
+        stopUpdateTask();
     }
 
     private static void startUpdateTask(MinecraftServer server, EntityPlayerMP player) {
@@ -49,18 +44,14 @@ public class JoinQuitHandler {
                     int maxPlayers = playerList.getMaxPlayers();
                     String details = "Playing on OpenWar";
                     String state = onlinePlayers + "/" + maxPlayers;
-
+                    System.out.println("SEND PACKET");
                     NetworkHandler.INSTANCE.sendTo(new PacketRPC(details, state), player);
                 }
             }, 0, 2, TimeUnit.SECONDS);
         }
     }
 
-    private static void stopUpdateTask(EntityPlayerMP player) {
-        String details = "Main Menu";
-        String state = "";
-        NetworkHandler.INSTANCE.sendTo(new PacketRPC(details, state), player);
-        NetworkHandler.INSTANCE.sendTo(new PacketRPC(details, state), player);
+    private static void stopUpdateTask() {
         if (scheduler != null) {
             scheduler.shutdownNow();
             scheduler = null;
