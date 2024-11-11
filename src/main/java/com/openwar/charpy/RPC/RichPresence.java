@@ -1,6 +1,5 @@
 package com.openwar.charpy.RPC;
 
-import com.openwar.charpy.Handler.PlayerJoinServerHandler;
 import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
 import net.arikia.dev.drpc.DiscordEventHandlers;

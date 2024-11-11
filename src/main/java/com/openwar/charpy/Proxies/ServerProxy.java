@@ -1,8 +1,8 @@
 package com.openwar.charpy.Proxies;
 
 
-import com.openwar.charpy.Entity.*;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import com.openwar.charpy.Handler.JoinQuitHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

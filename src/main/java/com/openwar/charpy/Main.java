@@ -4,6 +4,7 @@ import com.openwar.charpy.Commands.CommandInfo;
 import com.openwar.charpy.Entity.EntityParachute;
 import com.openwar.charpy.Entity.EntityPlane;
 import com.openwar.charpy.Handler.CommandSpawnParachute;
+import com.openwar.charpy.Handler.JoinQuitHandler;
 import com.openwar.charpy.Handler.NetworkHandler;
 import com.openwar.charpy.Hud.HudWarzone;
 import com.openwar.charpy.Proxies.CommonProxy;
@@ -52,6 +53,7 @@ public class Main {
     public void postInit(FMLPostInitializationEvent event) {
         LOGGER.info("OpenWar Banned loading {}!", Tags.MOD_NAME);
         MinecraftForge.EVENT_BUS.register(new HudWarzone());
+        MinecraftForge.EVENT_BUS.register(JoinQuitHandler.class);
         commonProxy.registerEventHandlers();
         NetworkHandler.init();
     }

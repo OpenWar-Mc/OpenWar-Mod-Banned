@@ -1,6 +1,7 @@
 package com.openwar.charpy.Proxies;
 
 import com.openwar.charpy.Handler.EventBanned;
+import com.openwar.charpy.Handler.JoinQuitHandler;
 import com.openwar.charpy.Utils.ItemLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;

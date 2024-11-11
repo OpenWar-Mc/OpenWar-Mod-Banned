@@ -23,6 +23,9 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new PlayerInfo());
         RenderingRegistry.registerEntityRenderingHandler(EntityPlane.class, RenderPlane.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityParachute.class, manager -> new RenderParachute(manager, new Parachuuute()));
+        RichPresence rpc = new RichPresence("947431491284115456");
+        String details = "Main Menu";
+        rpc.updatePresence(details, "", "original_openwar", "Join Us !", "", "");
     }
 
     @Override
@@ -34,12 +37,5 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new TooltipHandler(items));
         MinecraftForge.EVENT_BUS.register(new GuiEventHandler(items, admin));
         MinecraftForge.EVENT_BUS.register(FogHandler.class);
-        RichPresence rpc = new RichPresence("947431491284115456");
-        PlayerJoinServerHandler psl = new PlayerJoinServerHandler();
-        MinecraftForge.EVENT_BUS.register(psl);
-        String details = "Main Menu";
-        rpc.updatePresence(details, "", "original_openwar", "Join Us !", "", "");
-        PlayerJoinServerHandler.setRPC(rpc);
-
     }
 }
