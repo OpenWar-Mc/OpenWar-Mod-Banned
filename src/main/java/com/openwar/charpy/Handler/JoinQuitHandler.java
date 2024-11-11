@@ -44,7 +44,6 @@ public class JoinQuitHandler {
                     int maxPlayers = playerList.getMaxPlayers();
                     String details = "Playing on OpenWar";
                     String state = onlinePlayers + "/" + maxPlayers;
-                    System.out.println("SEND PACKET");
                     NetworkHandler.INSTANCE.sendTo(new PacketRPC(details, state), player);
                 }
             }, 0, 2, TimeUnit.SECONDS);
