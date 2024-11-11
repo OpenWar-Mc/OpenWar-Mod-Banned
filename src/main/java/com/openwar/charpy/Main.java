@@ -7,6 +7,7 @@ import com.openwar.charpy.Handler.CommandSpawnParachute;
 import com.openwar.charpy.Handler.NetworkHandler;
 import com.openwar.charpy.Hud.HudWarzone;
 import com.openwar.charpy.Proxies.CommonProxy;
+import com.openwar.charpy.RPC.RichPresence;
 import com.openwar.charpy.openwarbanned.Tags;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

@@ -3,7 +3,9 @@ package com.openwar.charpy.Proxies;
 import com.openwar.charpy.Entity.*;
 import com.openwar.charpy.Handler.*;
 import com.openwar.charpy.Hud.HudWarzone;
+import com.openwar.charpy.RPC.RichPresence;
 import com.openwar.charpy.Utils.ItemLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -32,5 +34,12 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new TooltipHandler(items));
         MinecraftForge.EVENT_BUS.register(new GuiEventHandler(items, admin));
         MinecraftForge.EVENT_BUS.register(FogHandler.class);
+        RichPresence rpc = new RichPresence("947431491284115456");
+        PlayerJoinServerHandler psl = new PlayerJoinServerHandler();
+        MinecraftForge.EVENT_BUS.register(psl);
+        String details = "Main Menu";
+        rpc.updatePresence(details, "", "original_openwar", "Join Us !", "", "");
+        PlayerJoinServerHandler.setRPC(rpc);
+
     }
 }
