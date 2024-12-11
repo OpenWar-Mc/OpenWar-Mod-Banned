@@ -58,7 +58,8 @@ public class PlayerInfo {
 
     List<String> targetableWasteLand = Arrays.asList(
             "Block{hbm:crate_can}",
-            "Block{hbm:block_meteor_treasure}"
+            "Block{hbm:block_meteor_treasure}",
+            "Block{mwc:desk_right_alt1}"
     );
 
     @SubscribeEvent
