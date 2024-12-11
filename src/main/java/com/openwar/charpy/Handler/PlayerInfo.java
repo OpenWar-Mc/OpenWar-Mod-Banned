@@ -50,8 +50,8 @@ public class PlayerInfo {
             "Block{mwc:supply_drop}",
             "Block{mwc:scp_locker}",
             "Block{mwc:locker}",
-            "Block{mwc:electric_box_opened}",
-            "Block{mwc:electric_box}",
+            "Block{hbm:electric_box_opened}",
+            "Block{hbm:electric_box}",
             "Block{hbm:radiorec}",
             "Block{hbm:safe}"
     );
